@@ -1,3 +1,9 @@
+# Log Group 
+resource "aws_cloudwatch_log_group" "lambda_post_log_group" {
+  name              = "lambda_post_log_group"
+  retention_in_days = 30
+}
+
 # Roles para a lambda
 resource "aws_iam_role" "lambda_post_role" {
   name = "lambda_post_role"
@@ -34,6 +40,11 @@ resource "aws_lambda_function" "lambda_post" {
   role          = aws_iam_role.lambda_post_role.arn
   memory_size   = 128
   timeout       = 30
+
+  logging_config {
+    log_format = "Text"
+    log_group  = aws_cloudwatch_log_group.lambda_post_log_group.name
+  }
 
   environment {
     variables = {

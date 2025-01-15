@@ -6,7 +6,7 @@ Este projeto é uma prova de conceito (PoC) que demonstra como criar um Crud Ser
 - [x] Deixar o nome da tabela no dynamo dinâmica nas lambdas ( env )
 - [ ] Verificar uma forma de zipar as lambdas automaticamente
 - [ ] Criar integração da api com lambda
-- [ ] Verificar como deletar Log Groups ao destruir infra
+- [x] Verificar como deletar Log Groups ao destruir infra
 
 ## Payload de teste da lambda na AWS
 
