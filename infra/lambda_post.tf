@@ -52,3 +52,22 @@ resource "aws_lambda_function" "lambda_post" {
     }
   }
 }
+
+resource "aws_api_gateway_integration" "person_post_integration" {
+  rest_api_id             = aws_api_gateway_rest_api.api.id
+  resource_id             = aws_api_gateway_resource.person.id
+  http_method             = aws_api_gateway_method.person_post.http_method
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.lambda_post.invoke_arn
+}
+
+resource "aws_lambda_permission" "allow_apigateway_invoke" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_post.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # A fonte do evento vem da API Gateway REST API específica
+  source_arn = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
+}

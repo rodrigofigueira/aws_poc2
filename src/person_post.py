@@ -7,7 +7,7 @@ dynamodb = boto3.resource('dynamodb')
 DYNAMODB_TABLE = os.environ["DYNAMODB_TABLE"]
 
 def gerarObjetoParaEnvio(event):
-    body = event["body"]
+    body = json.loads(event["body"]) if isinstance(event["body"], str) else event["body"]
 
     item = {
         "id" : body["id"],
@@ -36,10 +36,3 @@ def lambda_handler(event, context):
             "statusCode": 500,
             "body": json.dumps({"message": "Error processing event", "error": str(e)})
         }
-    
-# "body": {
-#     "id": "123",
-#     "nome": "Nome Teste",
-#     "dtNascimento": "2021-10-19 10:11:00",
-#     "ativo": true
-#   },    

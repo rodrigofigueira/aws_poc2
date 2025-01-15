@@ -11,10 +11,10 @@ Este projeto é uma prova de conceito (PoC) que demonstra como criar um Crud Ser
 ## Payload de teste da lambda na AWS
 
 ```bash
-"body": {
-    "id": "123",
-    "nome": "Nome Teste",
-    "dtNascimento": "2021-10-19 10:11:00",
-    "ativo": true
+{
+    "id": "3456",
+    "nome": "Nome Teste 555",
+    "dtNascimento": "1982-03-20 10:11:00",
+    "ativo": false
 }
 ```

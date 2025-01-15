@@ -18,3 +18,17 @@ resource "aws_api_gateway_method" "person_post" {
   http_method   = "POST"
   authorization = "NONE"
 }
+
+resource "aws_api_gateway_deployment" "api_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  depends_on = [
+    aws_api_gateway_method.person_post,
+    aws_api_gateway_integration.person_post_integration
+  ]
+}
+
+resource "aws_api_gateway_stage" "api_stage" {
+  deployment_id = aws_api_gateway_deployment.api_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  stage_name    = "dev"
+}
