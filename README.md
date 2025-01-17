@@ -7,8 +7,9 @@ Este projeto é uma prova de conceito (PoC) que demonstra como criar um Crud Ser
 - [ ] Verificar uma forma de zipar as lambdas automaticamente
 - [x] Criar integração da api com lambda
 - [x] Verificar como deletar Log Groups ao destruir infra
-- [ ] Criar Método GetPorId
-- [ ] Criar Lambda para pesquisar GetPorId
+- [x] Criar Método GetPorId
+- [x] Criar Lambda para pesquisar GetPorId
+- [x] Provisionar lambda get por Terraform
 
 ## Payload de teste da lambda na AWS
 
