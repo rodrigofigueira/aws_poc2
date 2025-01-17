@@ -11,6 +11,7 @@ Este projeto é uma prova de conceito (PoC) que demonstra como criar um Crud Ser
 - [x] Criar Lambda para pesquisar GetPorId
 - [x] Provisionar lambda get por Terraform
 - [ ] Incluir cognito
+- [ ] Organizar arquivos em /infra por tipos (ex.: lambdas, api_gateway, etc...)
 
 ## Payload de teste da lambda na AWS
 
