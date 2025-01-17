@@ -19,11 +19,27 @@ resource "aws_api_gateway_method" "person_post" {
   authorization = "NONE"
 }
 
+
+resource "aws_api_gateway_resource" "person_id" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_resource.person.id
+  path_part   = "{id}"
+}
+
+resource "aws_api_gateway_method" "person_get" {
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.person_id.id
+  http_method   = "GET"
+  authorization = "NONE"
+}
+
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   depends_on = [
     aws_api_gateway_method.person_post,
-    aws_api_gateway_integration.person_post_integration
+    aws_api_gateway_integration.person_post_integration,
+    aws_api_gateway_method.person_get,
+    aws_api_gateway_integration.person_get_by_id_integration
   ]
 }
 
